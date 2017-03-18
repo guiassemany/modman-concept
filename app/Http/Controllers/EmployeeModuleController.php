@@ -40,11 +40,6 @@ class EmployeeModuleController extends Controller
             ->selectFunctionality('edit_employee')
             ->hasPermission();
 
-//        $alterEmployeeReg = $this->parser->getSystem()
-//            ->selectModule('employee')
-//            ->selectFunctionality('alter_employee_registration')
-//            ->hasPermission();
-
         $employees = Employee::paginate(15);
 
         return view('modules.employee.home', compact('createEmployee', 'editEmployee', 'employees'));
@@ -67,7 +62,11 @@ class EmployeeModuleController extends Controller
     }
 
     public function edit(Employee $employee){
-        return view('modules.employee.edit', compact('employee'));
+        $alterEmployeeReg = $this->parser->getSystem()
+            ->selectModule('employee')
+            ->selectFunctionality('alter_employee_registration')
+            ->hasPermission();
+        return view('modules.employee.edit', compact('employee', 'alterEmployeeReg'));
     }
 
     public function update(Request $request, Employee $employee){

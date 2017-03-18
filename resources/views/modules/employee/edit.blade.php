@@ -42,8 +42,11 @@
                                 <label for="registration" class="col-md-4 control-label">Matrícula</label>
 
                                 <div class="col-md-6">
-                                    <input id="registration" type="text" class="form-control" name="registration" value="{{ old('registration', $employee->registration) }}" required autofocus>
-
+                                    @if($alterEmployeeReg)
+                                        <input id="registration" type="text" class="form-control" name="registration" value="{{ old('registration', $employee->registration) }}" required autofocus>
+                                    @else
+                                        <input id="registration" type="text" class="form-control" name="registration" value="{{ old('registration', $employee->registration) }}" required autofocus readonly>
+                                    @endif
                                     @if ($errors->has('registration'))
                                         <span class="help-block">
                                         <strong>{{ $errors->first('registration') }}</strong>
