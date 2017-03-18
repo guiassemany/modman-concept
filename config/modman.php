@@ -21,8 +21,8 @@ return [
         'barbieri_management' => [
             'key' => 'S35',
             'modules' =>  [
-                'funcionario' => [
-                    'key' => 'M33',
+                'employee' => [
+                    'key' => 'M43',
                     'functionalities' => [
                         'create_employee' => [
                             'key' => 'F113'

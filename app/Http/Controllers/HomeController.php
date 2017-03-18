@@ -7,21 +7,28 @@ use App\Modman\Parser;
 
 class HomeController extends Controller
 {
-    private $modmanParser;
 
-    public function __construct(Parser $modmanParser)
+    private $parser;
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct(Parser $parser)
     {
-        $this->modmanParser = $modmanParser;
+        $this->middleware('auth');
+        $this->parser = $parser;
     }
 
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        $a = $this->modmanParser
-            ->getSystem()
-            ->selectModule('funcionario')
-            ->selectFuncionality('alter_employee_registration')
-            ->hasPermission();
-        dd($a);
+        $employeeModule = $this->parser->getSystem()->selectModule('employee')->hasPermission();
+        return view('home', compact('employeeModule'));
     }
-
 }
