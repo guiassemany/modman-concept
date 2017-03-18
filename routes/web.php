@@ -9,3 +9,4 @@ Route::get('/module/employee/register', 'EmployeeModuleController@create')->name
 Route::post('/module/employee/store', 'EmployeeModuleController@store')->name('employee.store');
 Route::get('/module/employee/edit/{employee}', 'EmployeeModuleController@edit')->name('employee.edit');
 Route::post('/module/employee/edit/{employee}', 'EmployeeModuleController@update')->name('employee.update');
+Route::get('/module/employee/destroy/{employee}', 'EmployeeModuleController@destroy')->name('employee.destroy');

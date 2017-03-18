@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Modman\Parser;
 use App\Employee;
+use Illuminate\Support\Facades\Validator;
 
 class EmployeeModuleController extends Controller
 {
@@ -73,11 +74,25 @@ class EmployeeModuleController extends Controller
         if(!$employee->update($request->all())){
             $request->session()->flash('message', 'Ocorreu um erro!');
             $request->session()->flash('alert-class', 'alert-danger');
-            return redirect()->back();
+            return redirect()->back()->withErrors();
         }
         $request->session()->flash('message', 'Funcionário atualizado com sucesso!');
         $request->session()->flash('alert-class', 'alert-success');
         return redirect()->route('employee.home');
+    }
+
+    public function destroy(Request $request, Employee $employee){
+        if(!$employee->delete()){
+            $request->session()->flash('message', 'Ocorreu um erro!');
+            $request->session()->flash('alert-class', 'alert-danger');
+            return redirect()->back();
+        }
+
+        $request->session()->flash('message', 'Funcionário excluido com sucesso!');
+        $request->session()->flash('alert-class', 'alert-success');
+        return redirect()->route('employee.home');
+
+
     }
 
     /**
@@ -91,7 +106,7 @@ class EmployeeModuleController extends Controller
         return Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:employees',
-            'registration' => 'required|min:6',
+            'registration' => 'required|numeric|min:6',
         ]);
     }
 }
