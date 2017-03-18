@@ -4,7 +4,14 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Modman app keys
+    | Modman base api URL
+    |--------------------------------------------------------------------------
+    */
+    'api_base_url' => '',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Modman app configuration
     |--------------------------------------------------------------------------
     |
     | Keys used to request Modman allowed Modules
@@ -12,9 +19,9 @@ return [
 
     'systems' =>  [
         'barbieri_management' => [
-            'key' => 'M33',
+            'key' => 'S35',
             'modules' =>  [
-                'cadastro_funcionario' => [
+                'funcionario' => [
                     'key' => 'M33',
                     'functionalities' => [
                         'create_employee' => [
