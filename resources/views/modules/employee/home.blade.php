@@ -59,7 +59,12 @@
                                                 @if($editEmployee)
                                                     <li><a href="{{route('employee.edit', ['employee' => $employee->id])}}">Editar</a></li>
                                                 @endif
-                                                <li><a href="{{route('employee.destroy', ['employee' => $employee->id])}}">Excluir</a></li>
+                                                @if($deleteEmployee)
+                                                    <li><a href="{{route('employee.destroy', ['employee' => $employee->id])}}">Excluir</a></li>
+                                                @endif
+                                                @if(!$deleteEmployee && !$editEmployee)
+                                                    <li>Nenhuma ação disponível</li>
+                                                @endif
                                             </ul>
                                         </div>
                                     </td>

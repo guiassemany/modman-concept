@@ -40,9 +40,14 @@ class EmployeeModuleController extends Controller
             ->selectFunctionality('edit_employee')
             ->hasPermission();
 
+        $deleteEmployee = $this->parser->getSystem()
+            ->selectModule('employee')
+            ->selectFunctionality('delete_employee')
+            ->hasPermission();
+
         $employees = Employee::paginate(15);
 
-        return view('modules.employee.home', compact('createEmployee', 'editEmployee', 'employees'));
+        return view('modules.employee.home', compact('createEmployee', 'editEmployee', 'deleteEmployee' ,'employees'));
     }
 
     public function create(){

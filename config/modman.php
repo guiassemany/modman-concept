@@ -33,6 +33,9 @@ return [
                         'alter_employee_registration' => [
                             'key' => 'F133'
                         ],
+                        'delete_employee' => [
+                            'key' => 'F143'
+                        ],
                     ]
                 ]
             ]

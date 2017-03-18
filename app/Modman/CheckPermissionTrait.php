@@ -11,12 +11,15 @@ trait CheckPermissionTrait {
     {
         $client = new Client(['base_uri' => 'http://api.modman.ga/api/']);
         $response = $client->request('POST', 'endpoint', ['json' => ['key' => $this->key]]);
-
-        $teste = json_decode($response->getBody()->getContents());
-        if(!empty(json_decode($response->getBody()))){
-            return strtoupper($teste[0]->profile) == strtoupper(Auth::user()->role);
+        $permsArray = [];
+        $retorno = json_decode($response->getBody());
+        foreach ($retorno as $permission){
+            $permsArray[] = strtoupper($permission->profile);
         }
-        return null;
+        if(!empty($permsArray)){
+            return in_array(strtoupper(Auth::user()->role), $permsArray);
+        }
+        return false;
     }
 
 }
