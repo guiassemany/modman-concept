@@ -16,7 +16,7 @@
                                         Funcionários
                                     </div>
                                     <div class="panel-footer">
-                                        <span>Acessar <i class="glyphicon glyphicon-arrow-right"></i></span>
+                                        <a href="{{route('employee.home')}}">Acessar <i class="glyphicon glyphicon-arrow-right"></i></a>
                                     </div>
                                 </div>
                             @endif

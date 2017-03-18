@@ -48,7 +48,7 @@ class Module
      * @param $funcName
      * @return Functionality
      */
-    public function selectFuncionality($funcName)
+    public function selectFunctionality($funcName)
     {
         foreach ( $this->functionalities as $functionality) {
             if ( $funcName == $functionality->getName() ) {
